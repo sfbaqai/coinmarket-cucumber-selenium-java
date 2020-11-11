@@ -27,3 +27,19 @@ Generated results of test cases are available in test-output folder.
 
 and HTML file "index.html" contains the generated report of all scenarios and their results.
 
+
+Steps files are available in stepDefinitions package
+
+pageObjects package contains class file for functions used for UI Automation
+
+utilities package contains class file CurrencyAPIFunctions.java that contains Functions used in API testing
+
+Feature file for UI scenarios is found in Features folder, Filename: CoinMarketCap.feature
+Feature file for API scenarios is found in Features folder, Filename: CoinMaker_API.feature
+
+
+
+Target folder also contains generated report against the runs
+
+If you want to run a test case one by one, just place tag in TestRun.java or APITestRun.java for available tag for a scenario.
+
