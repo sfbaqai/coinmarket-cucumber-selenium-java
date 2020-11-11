@@ -22,3 +22,8 @@ Make sure you have JAVA 11 for this.
 In order to run UI-test cases Simply Run TestRun.java in TestRunner Package.
 In order to run-API-test-cases Simply Run APITestRun.java in TestRunner Package.
 
+
+Generated results of test cases are available in test-output folder.
+
+and HTML file "index.html" contains the generated report of all scenarios and their results.
+
