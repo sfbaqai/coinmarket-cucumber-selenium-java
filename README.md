@@ -43,3 +43,29 @@ Target folder also contains generated report against the runs
 
 If you want to run a test case one by one, just place tag in TestRun.java or APITestRun.java for available tag for a scenario.
 
+For Example for API Test Run Java file:
+
+@RunWith(Cucumber.class)
+@CucumberOptions
+(
+		features = {".//Features/CoinMaker_API_Test.feature"},
+    .
+    .
+    .
+    tags = "@Test2"
+						
+)
+
+and in CoinMaker_API.feature file as:
+
+@Test2
+Scenario: Verify json data after retrieving Ethereum
+	Given User calls info api to get Ethereum data
+	Then User checks logo is equal to "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png"
+	And technical_doc is equal to "https://github.com/ethereum/wiki/wiki/White-Paper"
+	And Symbol of Ethereum is "ETH"
+	And date_added is equal to "2015-08-07T00:00:00.000Z"
+	And platform is "null"
+	And currency has "mineable" with it
+
+This will only run this scenario as it contains @Test2 tag with it
