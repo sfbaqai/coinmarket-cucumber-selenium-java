@@ -145,7 +145,64 @@ public class CurrencyAPIFunctions {
 		}
 	}
 	
+	
 	public Response getRsponse() {
 		return this.response;
+	}
+	
+	public Response get_range_ids(Response response,Integer start, Integer end) {
+
+		String id_string="";
+		for(int i=start; i<=end;i++) {
+			if(i==end) {
+				id_string=id_string+i;
+			}else {
+				id_string=id_string+i+",";
+			}
+		}
+		
+		String baseUri="https://pro-api.coinmarketcap.com";	
+		response = given().
+		header("Accepts", "application/json").
+		header("X-CMC_PRO_API_KEY", "f0d24ee2-323d-429b-9c91-925336acae42").
+		queryParam("id", id_string).
+		baseUri(baseUri).
+		when().get("/v1/cryptocurrency/info").
+		then().assertThat().statusCode(200).and().extract().response();
+		return response;
+		
+	}
+	
+	public boolean check_mineable_tag(Response response,Integer start, Integer end){
+		
+		for(int i=start; i<=end;i++) {
+			JSONObject obj = new JSONObject(response.asString());
+			JSONArray array = obj.getJSONObject("data").getJSONObject(String.valueOf(i)).getJSONArray("tags");
+			
+			for(int j=0;j<array.length();j++) {
+				String s =(String) array.get(j);
+				if(!s.equals("mineable")) {
+					System.out.println("ID: "+i +"does not contain mineable tag");
+					return false;
+				}
+			}
+		}
+		return true;
+		
+	}
+	
+	public boolean check_correct_ids(Response response,Integer start, Integer end) {
+		JSONObject obj = new JSONObject(response.asString());
+		for(int i=start;i<=end;i++) {
+			
+			if(!obj.getJSONObject("data").isNull(String.valueOf(i))) {
+				return false;
+			}
+		}
+		
+		if(!obj.getJSONObject("data").isNull(String.valueOf(end+1))) {
+			return false;
+		}
+		return true;
 	}
 }
