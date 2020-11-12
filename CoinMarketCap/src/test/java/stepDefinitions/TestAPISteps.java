@@ -25,6 +25,8 @@ public class TestAPISteps {
 	String CUR_ID_BTC="";
 	String CUR_ID_USDT="";
 	String CUR_ID_ETH="";
+	Integer start_id;
+	Integer end_id;
 	Scenario Scn; 
 	@Before
 	public void BeforeHook(Scenario s) {
@@ -108,6 +110,24 @@ public class TestAPISteps {
 		Assert.assertTrue(cf.verify_tag_value(_RESP, tag_val));
 	}
 
+	
+	@Given("User calls the info api to get data of first {int} to {int} currency id")
+	public void user_calls_the_info_api_to_get_data_of_first_to_currency_id(Integer start_id_val, Integer end_id_val) {
+	    cf = new CurrencyAPIFunctions();
+	    this.start_id=start_id_val;
+	    this.end_id=end_id_val;
+	    _RESP=cf.get_range_ids(_RESP,start_id, end_id);
+	}
+
+	@Then("User check mineable tag available in them")
+	public void user_check_mineable_tag_available_in_them() {
+		cf.check_mineable_tag(_RESP,start_id, end_id);
+	}
+
+	@Then("user check correct cruptocurrencies are printed out")
+	public void user_check_correct_cruptocurrencies_are_printed_out() {
+		cf.check_correct_ids(_RESP, start_id, end_id);
+	}
 
 
 
