@@ -16,3 +16,10 @@ Scenario: Verify json data after retrieving Ethereum
 	And date_added is equal to "2015-08-07T00:00:00.000Z"
 	And platform is "null"
 	And currency has "mineable" with it
+	
+@Test3
+Scenario: Verify first ten currency ids
+	Given User calls the info api to get data of first 1 to 10 currency id
+	Then User check mineable tag available in them
+	And user check correct cruptocurrencies are printed out
+	
