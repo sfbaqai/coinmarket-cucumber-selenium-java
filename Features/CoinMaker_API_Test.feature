@@ -6,7 +6,7 @@ Scenario: Verify currency conversion after getting curr ID
 	And User converts Bolivian Boliviano by calling price conversion
 	Then User verifies api response
 	
-#	THIS IS EXTRA POINT TASK
+
 @Test2
 Scenario: Verify json data after retrieving Ethereum
 	Given User calls info api to get Ethereum data
@@ -16,7 +16,8 @@ Scenario: Verify json data after retrieving Ethereum
 	And date_added is equal to "2015-08-07T00:00:00.000Z"
 	And platform is "null"
 	And currency has "mineable" with it
-	
+
+#	THIS IS EXTRA POINT TASK	
 @Test3
 Scenario: Verify first ten currency ids
 	Given User calls the info api to get data of first 1 to 10 currency id
